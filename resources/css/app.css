@@ -1,0 +1,17 @@
+/* Estilo para los iconos de navegación del carrusel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(182deg) brightness(106%) contrast(100%);
+}
+
+/* Estilo para el indicador activo */
+.carousel-indicators .active {
+    background-color: var(--bs-primary) !important; /* Verde primario de Bootswatch Journal */
+     /* Color del borde si es necesario */
+}
+
+/* Estilo para los indicadores inactivos */
+.carousel-indicators button {
+    background-color: var(--bs-gray-dark) !important; /* Gris oscuro definido en las variables */
+     /* Color del borde si es necesario */
+}
