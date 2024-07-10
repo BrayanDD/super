@@ -42,7 +42,12 @@
           <!-- Left Side Of Navbar -->
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home
+              <a class="nav-link active" href="{{ route('home') }}">Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ route('seccion.index') }}">Seccion
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
@@ -88,8 +93,7 @@
                 <div class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault();">
                     {{ __('Logout') }}
                   </a>
 
@@ -109,8 +113,12 @@
       @yield('content')
     </main>
   </div>
-   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js">
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js">
+  </script>
 </body>
 
 </html>

@@ -42,7 +42,7 @@
                       class="d-block w-100" alt="Producto 2">
                   </div>
                   <div class="col-md-6">
-                    <h3>Nombre del Producto 2"></h3>
+                    <h3>Nombre del Producto 2</h3>
                     <p>Precio: $200</p>
                     <button class="btn btn-primary">Más detalles</button>
                   </div>
@@ -56,7 +56,7 @@
                       class="d-block w-100" alt="Producto 3">
                   </div>
                   <div class="col-md-6">
-                    <h3>Nombre del Producto 3"></h3>
+                    <h3>Nombre del Producto 3</h3>
                     <p>Precio: $300</p>
                     <button class="btn btn-primary">Más detalles</button>
                   </div>
