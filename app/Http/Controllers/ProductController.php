@@ -23,11 +23,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($seccion_id)
     {
-        $seccions = Seccion::all();
-
-        return view('products.new_product',compact('seccions'));
+        $seccion = Seccion::findOrFail($seccion_id);
+        return view('products.new_product', compact('seccion'));
     }
 
     /**
@@ -38,11 +37,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string',
-            'seccion' => 'required|string',
-            'price' => 'required|numeric|min:1|max:6',
+            'seccion_id' => 'required|integer|exists:seccions,id',
+            'price' => 'required|numeric|min:1|max:999999',
         ]);
+
+        Product::create($data);
+
+        return redirect()->route('seccion.show', ['seccion' => $request->seccion_id]);
     }
 
     /**
@@ -53,8 +56,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+ 
+        return view('products.product', compact('product'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -31,4 +31,6 @@ Route::post('/secciones',[SeccionController::class,'store'])->name('seccion.stor
 Route::get('/secciones/{seccion}',[SeccionController::class,'show'])->name('seccion.show');
 
 //Productos
-Route::get('/products/create',[ProductController::class,'create'])->name('product.create');
+Route::get('/products/create/{seccion_id}', [ProductController::class, 'create'])->name('product.create');
+Route::post('/products', [ProductController::class, 'store'])->name('product.store');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');

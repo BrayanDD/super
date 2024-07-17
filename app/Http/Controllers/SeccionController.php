@@ -55,10 +55,10 @@ class SeccionController extends Controller
      */
     public function show(Seccion $seccion)
     {
-        $productos = Product::where('seccion_id', $seccion->id)->get();
+        $products = Product::where('seccion_id', $seccion->id)->get();
 
         // Retornar la vista con los datos
-        return view('secciones.show', compact('seccion', 'productos'));
+        return view('seccions.seccion_select', compact('seccion', 'products'));
     }
 
     /**
