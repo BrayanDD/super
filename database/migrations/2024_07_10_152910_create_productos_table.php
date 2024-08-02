@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +18,7 @@ class CreateProductosTable extends Migration
                 $table->id();
                 $table->string('nombre');
                 $table->decimal('precio', 8, 2); 
-                $table->unsignedBigInteger('seccion_id'); 
-
-                $table->foreign('seccion_id')->references('id')->on('seccions')->onDelete('cascade');
-
+                $table->foreignId(User::class);
                 $table->timestamps();
             });
         }

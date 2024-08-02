@@ -5,7 +5,7 @@
     <h2>Añadir Producto en {{ $seccion->name }}</h2>
     <form method="POST" action="{{ route('product.store') }}">
         @csrf
-        <input type="hidden" name="seccion_id" value="{{ $seccion->id }}">
+        <input type="hidden" name="seccion_id" readonly value="{{ $seccion->id }}">
 
         <div class="mb-3 row">
             <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>

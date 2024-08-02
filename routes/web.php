@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SeccionController;
+use App\Models\Carrito;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +36,11 @@ Route::get('/secciones/{seccion}',[SeccionController::class,'show'])->name('secc
 Route::get('/products/create/{seccion_id}', [ProductController::class, 'create'])->name('product.create');
 Route::post('/products', [ProductController::class, 'store'])->name('product.store');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
+
+
+//Carrito
+
+Route::get('/carritos',[CarritoController::class, 'index'])->name('carrito.index');
+Route::get('/carritos/{carrito}/edit',[CarritoController::class, 'edit'])->name('carrito.edit');
+Route::post('/carritos',[CarritoController::class, 'store'])->name('carrito.store');
+Route::delete('/carritos/{carrito}/',[CarritoController::class, 'destroy'])->name('carritos.destroy');

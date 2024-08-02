@@ -72,8 +72,7 @@
               @endif
             @else
               <li class="nav-item ">
-                <a id="" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" v-pre>
+                <a class="nav-link  " href="{{ route('carrito.index') }}" >
                   carr
                 </a>
               </li>
