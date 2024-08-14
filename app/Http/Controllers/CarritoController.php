@@ -10,19 +10,30 @@ use Illuminate\Support\Facades\Auth;
 class CarritoController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+
         $carrito = Carrito::where('user_id', Auth::id())->get();
     
         if ($carrito->isNotEmpty()) {
             $productIds = $carrito->pluck('product_id');
             $products = Product::whereIn('id', $productIds)->get();
     
-            // Calcula el total considerando la cantidad de cada producto en el carrito
+            
             $total = $carrito->sum(function($carritoItem) use ($products) {
                 $product = $products->where('id', $carritoItem->product_id)->first();
                 return $product->price * $carritoItem->quantity;
@@ -55,15 +66,23 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|integer',
+        ]);
         $data = [
             'product_id' => $request->input('product_id'),
             'user_id' => Auth::id(),
-            'quantity' =>$request->input('quantity'),
+            
         ];
+
+        
     
         Carrito::create($data);
     
-        return back();
+        return back()->with('alert',[
+            'message' => "Add to carr succesfully",
+            'type' => 'success',
+        ]);;
     }
 
     /**
@@ -85,7 +104,15 @@ class CarritoController extends Controller
      */
     public function edit(Carrito $carrito)
     {
-        //
+        $this->authorize('update',$carrito);
+
+        $product = Product::find($carrito->product_id);
+
+  
+      return view('carritos.edit', compact('carrito', 'product'))->with('alert',[
+        'message' => "Edited succesfully",
+        'type' => 'success',
+    ]);;
     }
 
     /**
@@ -97,7 +124,13 @@ class CarritoController extends Controller
      */
     public function update(Request $request, Carrito $carrito)
     {
-        //
+        $this->authorize('update',$carrito);
+
+        $carrito->update($request->only(['quantity']));
+        return redirect()->route('carrito.index')->with('alert',[
+            'message' => "Updated succesfully ",
+            'type' => 'success',
+        ]);;
     }
 
     /**
@@ -108,7 +141,12 @@ class CarritoController extends Controller
      */
     public function destroy(Carrito $carrito)
     {
+        $this->authorize('delete',$carrito);
+
         $carrito->delete();
-        return back();
+        return back()->with('alert',[
+            'message' => "Deleted succesfully",
+            'type' => 'warning',
+        ]);;
     }
 }

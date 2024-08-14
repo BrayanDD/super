@@ -17,7 +17,7 @@
                           Cantidad: {{ $carritoItem->quantity }}<br>
                           Subtotal: ${{ number_format($product->price * $carritoItem->quantity, 0) }}
                       </p>
-                      {{-- <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Editar</a> --}}
+                      <a href="{{ route('carritos.edit', $carritoItem->id) }}" class="btn btn-primary">Editar</a>
                       <form action="{{ route('carritos.destroy', $carritoItem->id) }}" method="POST" style="display:inline-block;">
                           @csrf
                           @method('DELETE')

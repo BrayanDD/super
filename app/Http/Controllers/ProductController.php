@@ -9,10 +9,22 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+     
     public function index()
     {
         //
@@ -37,6 +49,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create');
         $data = $request->validate([
             'name' => 'required|string',
             'seccion_id' => 'required|integer|exists:seccions,id',
@@ -45,7 +58,10 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect()->route('seccion.show', ['seccion' => $request->seccion_id]);
+        return redirect()->route('seccion.show', $request->seccion_id)->with('alert',[
+            'message' => "Product $request->name succesfully saved",
+            'type' => 'success',
+        ]);
     }
 
     /**

@@ -31,6 +31,18 @@
             </div>
         </div>
 
+        <div class="mb-3 row">
+            <label for="product_picture" class="col-md-4 col-form-label text-md-end">Imagen</label>
+            <div class="col-md-6">
+                <input id="product_picture" type="file" class="form-control @error('product_picture') is-invalid @enderror" name="product_picture" >
+                @error('product_picture')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
         <div class="row mb-3">
             <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">

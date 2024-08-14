@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('carritos', function (Blueprint $table) {
-            $table->unsignedSmallInteger('quantity')->default(1);
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('product_picture')->default('profiles/default.png');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('carritos', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('product_picture');
         });
     }
 };

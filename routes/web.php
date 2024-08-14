@@ -41,6 +41,7 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name('pro
 //Carrito
 
 Route::get('/carritos',[CarritoController::class, 'index'])->name('carrito.index');
-Route::get('/carritos/{carrito}/edit',[CarritoController::class, 'edit'])->name('carrito.edit');
+Route::get('/carritos/{carrito}/edit',[CarritoController::class, 'edit'])->name('carritos.edit');
 Route::post('/carritos',[CarritoController::class, 'store'])->name('carrito.store');
 Route::delete('/carritos/{carrito}/',[CarritoController::class, 'destroy'])->name('carritos.destroy');
+Route::put('/carritos/{carrito}',[CarritoController::class, 'update'])->name('carrito.update');

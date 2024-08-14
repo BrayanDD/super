@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class SeccionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,12 +51,16 @@ class SeccionController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-           'name' => 'required', 
+           'name' => 'required|string', 
            
         ]);
 
-        Seccion::create($data);
-        return redirect()->route('seccion.index');
+        $data = Seccion::create($data);
+
+        return redirect()->route('seccion.index')->with('alert',[
+            'message' => "Seccion $data->name succesfully saved",
+            'type' => 'success',
+        ]);
     }
 
     /**
@@ -59,7 +73,7 @@ class SeccionController extends Controller
     {
         $products = Product::where('seccion_id', $seccion->id)->get();
 
-        // Retornar la vista con los datos
+     
         return view('seccions.seccion_select', compact('seccion', 'products'));
     }
 
